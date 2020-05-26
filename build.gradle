@@ -1,0 +1,43 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'java'
+    id 'maven'
+    id 'idea'
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencyManagement {
+    dependencies {
+        // manage spring boot version
+        dependencySet(group: "org.springframework.boot", version: "2.2.6.RELEASE") {
+            entry "spring-boot-starter"
+            entry "spring-boot-starter-web"
+        }
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "org.springframework.integration:spring-integration-mqtt:5.2.6.RELEASE"
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.2'
+    implementation 'org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.1.4'
+    implementation "org.mybatis.scripting:mybatis-thymeleaf:1.0.1"
+    implementation 'com.h2database:h2'
+}
